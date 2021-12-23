@@ -1,0 +1,76 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println("Введите количество прибывшего товара (гречка, рис, макароны): ");
+        Scanner sc = new Scanner (System.in);
+        int countBuckwheatArrive=sc.nextInt();
+        int countRiceArrive= sc.nextInt();
+        int countMacaroniArrive=sc.nextInt();
+
+        System.out.println("Введите количество убывшего товара (гречка, рис, макароны): ");
+        Scanner sc2 = new Scanner (System.in);
+        int countBuckwheatLeave=sc2.nextInt();
+        int countRiceLeave= sc2.nextInt();
+        int countMacaroniLeave=sc2.nextInt();
+
+        int sumBuckwheatArrive=0;
+        sumBuckwheatArrive+=countBuckwheatArrive;
+
+        int sumRiceArrive=0;
+        sumRiceArrive+=countRiceArrive;
+
+        int sumMacaroniArrive=0;
+        sumMacaroniArrive+=countMacaroniArrive;
+
+        int sumBuckwheatLeave=sumBuckwheatArrive;
+        sumBuckwheatLeave-=countBuckwheatLeave;
+        Integer sum=(sumBuckwheatLeave);
+        String s=sum.toString();
+
+        int sumRiceLeave=sumRiceArrive;
+        sumRiceLeave-=countRiceLeave;
+        Integer sum2=(sumRiceLeave);
+        String s2=sum2.toString();
+
+        int sumMacaroniLeave=sumMacaroniArrive;
+        sumMacaroniLeave-=countMacaroniLeave;
+        Integer sum3=(sumMacaroniLeave);
+        String s3=sum3.toString();
+
+        Map<String, List<String>> product = new TreeMap<>();
+        List<String> list1 = new ArrayList<>();
+        list1.add("Гречка");
+        List<String> list2 = new ArrayList<>();
+        list2.add("Рис");
+        List<String> list3 = new ArrayList<>();
+        list3.add("Макароны");
+
+        product.put("4604322000098", list1);
+        product.put("4607100026020", list2);
+        product.put("4607004004681", list3);
+
+        List<String> newList1 = product.get("4604322000098");
+        List<String> newList2 = product.get("4607100026020");
+        List<String> newList3 = product.get("4607004004681");
+        newList1.add(s);
+        newList2.add(s2);
+        newList3.add(s3);
+
+        product.put("4604322000098", newList1);
+        product.put("4607100026020", newList2);
+        product.put("4607004004681", newList3);
+
+        product.forEach((key,value)->System.out.print(key + ": "+value+ "\n"));
+
+        System.out.println("Введите артикул:");
+        Scanner sc3 = new Scanner (System.in);
+        String article=sc3.nextLine();
+
+        System.out.println(product.get(article));
+
+        }
+
+    }
